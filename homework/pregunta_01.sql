@@ -17,4 +17,5 @@
 --
 --  >>> Escriba su codigo a partir de este punto <<<
 -- cambio
+-- cambio 2
 SELECT SUM(c12) FROM tbl1;
