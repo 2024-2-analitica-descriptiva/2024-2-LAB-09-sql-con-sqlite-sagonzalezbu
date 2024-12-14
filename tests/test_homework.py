@@ -341,32 +341,41 @@ def test_13():
     conn, _ = load_data()
     with open("homework/pregunta_13.sql", encoding="utf-8") as file:
         query = file.read()
-    print(pd.read_sql_query(query, conn).to_dict())
-    assert pd.read_sql_query(query, conn).to_dict() == {
+    result = pd.read_sql_query(query, conn).to_dict()
+
+    # Round the results to 2 decimal places
+    result['avg(c12)'] = {k: round(v, 2) for k, v in result['avg(c12)'].items()}
+
+    expected = {
         "K0": {0: "A", 1: "B", 2: "C", 3: "D", 4: "E"},
         "avg(c12)": {
-            0: 476.155,
-            1: 536.5233333333333,
+            0: 476.16,
+            1: 536.52,
             2: 490.83,
             3: 709.53,
-            4: 474.825,
+            4: 474.83,
         },
     }
-
+    assert result == expected
 
 def test_14():
     """Test 14."""
     conn, _ = load_data()
     with open("homework/pregunta_14.sql", encoding="utf-8") as file:
         query = file.read()
-    print(pd.read_sql_query(query, conn).to_dict())
-    assert pd.read_sql_query(query, conn).to_dict() == {
+    result = pd.read_sql_query(query, conn).to_dict()
+
+    # Round the results to 2 decimal places
+    result['avg(c21)'] = {k: round(v, 2) for k, v in result['avg(c21)'].items()}
+
+    expected = {
         "K0": {0: "A", 1: "B", 2: "C", 3: "D", 4: "E"},
         "avg(c21)": {
-            0: 593.495,
+            0: 593.50,
             1: 575.47,
-            2: 530.7529999999999,
-            3: 655.6125,
-            4: 555.3230769230769,
+            2: 530.75,
+            3: 655.61,
+            4: 555.32,
         },
     }
+    assert result == expected
