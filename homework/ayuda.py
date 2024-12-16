@@ -2,7 +2,7 @@ import sqlite3
 
 # Ruta a los archivos SQL
 create_tables_file = 'tests/create_tables.sql'
-pregunta_08_file = 'homework/pregunta_08.sql'
+pregunta_08_file = 'homework/pregunta_13.sql'
 
 # Función para leer y ejecutar un archivo SQL
 def execute_sql_file(connection, file_path):
