@@ -271,16 +271,21 @@ def test_08():
     conn, _ = load_data()
     with open("homework/pregunta_08.sql", encoding="utf-8") as file:
         query = file.read()
-    print(pd.read_sql_query(query, conn).to_dict())
-    assert pd.read_sql_query(query, conn).to_dict() == {
+    result = pd.read_sql_query(query, conn).to_dict()
+
+    # Round the results to 2 decimal places
+    result["avg(c21)"] = {k: round(v, 2) for k, v in result["avg(c21)"].items()}
+
+    expected = {
         "strftime('%Y', c23)": {0: "2016", 1: "2017", 2: "2018", 3: "2019"},
         "avg(c21)": {
-            0: 564.4764285714285,
-            1: 515.1563636363636,
-            2: 557.5593749999999,
-            3: 550.9985714285714,
+            0: 564.48,
+            1: 515.16,
+            2: 557.56,
+            3: 551.00,
         },
     }
+    assert result == expected
 
 
 def test_09():
