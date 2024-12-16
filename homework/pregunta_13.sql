@@ -45,12 +45,12 @@
 -- 
 --SELECT k0, avg(c12) from tbl1 where c13>400 GROUP BY k0;
 
--- SELECT k0, ROUND(AVG(c12), 2) AS 'avg(c12)'
--- FROM tbl1 
--- WHERE c13 > 400 
--- GROUP BY k0;
-
-SELECT k0, ROUND(ROUND(AVG(c12) * 100, 0) / 100, 2) AS 'avg(c12)'
+SELECT k0, ROUND(AVG(c12), 2) AS 'avg(c12)'
 FROM tbl1 
 WHERE c13 > 400 
 GROUP BY k0;
+
+-- SELECT k0, ROUND(ROUND(AVG(c12) * 100, 0) / 100, 2) AS 'avg(c12)'
+-- FROM tbl1 
+-- WHERE c13 > 400 
+-- GROUP BY k0;
